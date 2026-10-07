@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ropa Limpia - Lavandería a Domicilio</title>
+  
+  <!-- Tipografías: Montserrat y Pacifico -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+  
+  <!-- Iconos FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #0055D4;
+      --primary-hover: #0043a8;
+      --primary-light: #E8F3FF;
+      --secondary-green: #10B981;
+      --text-main: #1E293B;
+      --text-muted: #64748B;
+      --bg-light: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --border-color: #E2E8F0;
+      --shadow-sm: 0 2px 8px rgba(0, 85, 212, 0.08);
+      --shadow-md: 0 8px 24px rgba(0, 85, 212, 0.12);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* HEADER & NAV */
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      font-family: 'Pacifico', cursive;
+      font-size: 2rem;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand-logo i {
+      font-size: 1.6rem;
+    }
+
+    .city-badge {
+      background-color: var(--primary-light);
+      color: var(--primary);
+      padding: 0.35rem 0.85rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* Desktop Navigation Tabs */
+    .desktop-nav {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-btn:hover {
+      background-color: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .nav-btn.active {
+      background-color: var(--primary);
+      color: #ffffff;
+    }
+
+    /* Mobile Navigation Bar */
+    .mobile-bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border-top: 1px solid var(--border-color);
+      padding: 0.5rem;
+      z-index: 999;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+    }
+
+    .mobile-nav-items {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .mobile-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border: none;
+      background: none;
+      padding: 0.4rem;
+      cursor: pointer;
+      gap: 0.2rem;
+    }
+
+    .mobile-tab.active {
+      color: var(--primary);
+    }
+
+    .mobile-tab i {
+      font-size: 1.2rem;
+    }
+
+    /* MAIN CONTAINER */
+    main {
+      flex: 1;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* HERO SECTION */
+    .hero-wrapper {
+      background: linear-gradient(135deg, #FFFFFF 0%, var(--primary-light) 100%);
+      border-radius: var(--radius);
+      padding: 3rem 2.5rem;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2.5rem;
+      align-items: center;
+      margin-bottom: 3rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0, 85, 212, 0.1);
+    }
+
+    .hero-text h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3rem;
+      color: var(--primary);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .time-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #FFFFFF;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--primary);
+      border: 1px solid var(--border-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-cta-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.85rem 1.6rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-wsp {
+      background-color: var(--secondary-green);
+      color: #ffffff;
+    }
+
+    .btn-wsp:hover {
+      background-color: #0d9668;
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+
+    .hero-image-box {
+      width: 100%;
+      height: 340px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+
+    .hero-image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* SECTION HEADINGS */
+    .section-title {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title h2 {
+      font-size: 2rem;
+      color: var(--text-main);
+      font-weight: 800;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+
+    /* 4 STEP PROCESS */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .step-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 1.8rem 1.2rem;
+      text-align: center;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      transition: transform 0.2s ease;
+    }
+
+    .step-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .step-number {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: #ffffff;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .step-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.5rem auto 1rem;
+      font-size: 1.6rem;
+    }
+
+    .step-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+      color: var(--text-main);
+    }
+
+    .step-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* BENEFITS GRID */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .benefit-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 2rem;
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .benefit-icon {
+      background: var(--primary-light);
+      color: var(--primary);
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .benefit-info h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .benefit-info p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* CALCULATOR CONTAINER */
+    .calc-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .counter-control {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-light);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 0.5rem 1rem;
+    }
+
+    .counter-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      border: none;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .counter-btn:hover {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .counter-val {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    select, input[type="text"], input[type="tel"], input[type="email"], input[type="date"] {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-light);
+      font-size: 0.95rem;
+      color: var(--text-main);
+      outline: none;
+      transition: border 0.2s;
+    }
+
+    select:focus, input:focus {
+      border-color: var(--primary);
+      background: #ffffff;
+    }
+
+    .service-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .option-card {
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .option-card.selected {
+      border-color: var(--primary);
+      background-color: var(--primary-light);
+    }
+
+    .option-card h5 {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      margin-bottom: 0.2rem;
+    }
+
+    .option-card p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .total-box {
+      background: var(--primary-light);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      margin-top: 1.5rem;
+      border: 1px dashed var(--primary);
+    }
+
+    .total-box span {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .total-price {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-top: 0.3rem;
+    }
+
+    /* ZONAS & MAP */
+    .zones-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .zone-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border: 1px solid var(--border-color);
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .status-badge {
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .status-active {
+      background: #D1FAE5;
+      color: #065F46;
+    }
+
+    /* FOOTER & SOCIALS */
+    footer {
+      background: #0F172A;
+      color: #F1F5F9;
+      padding: 3.5rem 1.5rem 2rem;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .footer-brand h3 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2rem;
+      color: #60A5FA;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-brand p {
+      color: #94A3B8;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .footer-links h4, .footer-contact h4, .footer-social h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-links a {
+      color: #94A3B8;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #60A5FA;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .social-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: all 0.2s;
+    }
+
+    .social-btn:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #64748B;
+      font-size: 0.85rem;
+    }
+
+    /* RESPONSIVE BREAKPOINTS */
+    @media (max-width: 992px) {
+      .hero-wrapper {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+      }
+      .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-container {
+        grid-template-columns: 1fr 1fr;
+      }
+      .zones-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .desktop-nav {
+        display: none;
+      }
+      .mobile-bottom-nav {
+        display: block;
+      }
+      main {
+        padding-bottom: 5rem;
+      }
+      .hero-text h1 {
+        font-size: 2.2rem;
+      }
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+      .service-options {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand-logo" onclick="switchTab('inicio')">
+        <i class="fa-solid fa-jug-detergent"></i> Ropa Limpia
+      </a>
+      
+      <div class="city-badge">
+        <i class="fa-solid fa-location-dot"></i> Antofagasta
+      </div>
+
+      <nav class="desktop-nav">
+        <button class="nav-btn active" onclick="switchTab('inicio')">
+          <i class="fa-solid fa-house"></i> Inicio
+        </button>
+        <button class="nav-btn" onclick="switchTab('precios')">
+          <i class="fa-solid fa-calculator"></i> Precios
+        </button>
+        <button class="nav-btn" onclick="switchTab('zonas')">
+          <i class="fa-solid fa-map-location-dot"></i> Zonas
+        </button>
+        <button class="nav-btn" onclick="switchTab('agendar')">
+          <i class="fa-solid fa-calendar-check"></i> Agendar
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENT CONTAINER -->
+  <main>
+
+    <!-- TAB 1: INICIO -->
+    <div id="inicio" class="tab-content active">
+      
+      <!-- HERO BANNER -->
+      <section class="hero-wrapper">
+        <div class="hero-text">
+          <div class="time-badge">
+            <i class="fa-solid fa-bolt" style="color: #F59E0B;"></i> Despacho en 24h / 48h
+          </div>
+          <h1>Tu ropa limpia y fresca, sin esfuerzo</h1>
+          <p>Recogemos, lavamos y entregamos tu ropa impecable directamente en la puerta de tu casa por kilo. ¡Olvídate de la lavadora!</p>
+          
+          <div class="hero-cta-buttons">
+            <a href="https://wa.me/" target="_blank" class="btn btn-wsp">
+              <i class="fa-brands fa-whatsapp"></i> Pedir por WhatsApp
+            </a>
+            <button class="btn btn-primary" onclick="switchTab('precios')">
+              <i class="fa-solid fa-calculator"></i> Calcular Valor
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-image-box">
+          <img src="http://googleusercontent.com/image_collection/image_retrieval/17898413810218234378_0" alt="Ropa Limpia y Doblada">
+        </div>
+      </section>
+
+      <!-- PROCESO EN 4 PASOS -->
+      <section>
+        <div class="section-title">
+          <h2>¿Cómo funciona el servicio?</h2>
+          <p>Lavar tu ropa nunca fue tan fácil y rápido</p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+            <h3>Agendas</h3>
+            <p>Ingresas tus datos y seleccionas el día y la hora conveniente para ti.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-icon"><i class="fa-solid fa-truck-pickup"></i></div>
+            <h3>Retiramos</h3>
+            <p>Pasamos por tu domicilio a retirar tus prendas en bolsas selladas.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-icon"><i class="fa-solid fa-soap"></i></div>
+            <h3>Lavamoss</h3>
+            <p>Procesamos tus prendas con detergentes biodegradables e hipoalergénicos.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <div class="step-icon"><i class="fa-solid fa-shirt"></i></div>
+            <h3>Entregamos</h3>
+            <p>Te devolvemos tu ropa limpia, perfumada y doblada en 24h a 48h.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- VENTAJAS / BENEFICIOS -->
+      <section>
+        <div class="section-title">
+          <h2>¿Por qué elegir Ropa Limpia?</h2>
+          <p>La máxima comodidad para tu hogar o negocio</p>
+        </div>
+
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon"><i class="fa-solid fa-clock"></i></div>
+            <div class="benefit-info">
+              <h4>Ahorra Tiempo</h4>
+              <p>Gana hasta 6 horas a la semana libres de lavado y planchado.</p>
+            </div>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon"><i class="fa-solid fa-sparkles"></i></div>
+            <div class="benefit-info">
+              <h4>Cuidado Delicado</h4>
+              <p>Productos de alta gama que protegen los colores y fibras del textil.</p>
+            </div>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon"><i class="fa-solid fa-truck-fast"></i></div>
+            <div class="benefit-info">
+              <h4>Envío a Domicilio</h4>
+              <p>Retiro y entrega coordinados directamente en la puerta de tu hogar.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CALCULADORA RÁPIDA -->
+      <section>
+        <div class="section-title">
+          <h2>Calcula el costo de tu servicio</h2>
+          <p>Estimación rápida según el peso de tu ropa</p>
+        </div>
+
+        <div class="calc-card">
+          <div class="form-group">
+            <label class="form-label">Kilos aproximados (KG)</label>
+            <div class="counter-control">
+              <button class="counter-btn" onclick="updateKilos(-1)">-</button>
+              <span class="counter-val" id="quick-kilos">6 kg</span>
+              <button class="counter-btn" onclick="updateKilos(1)">+</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Sector de Retiro</label>
+            <select id="quick-zone">
+              <option value="0">Antofagasta Centro ($0 costo envío)</option>
+              <option value="1500">Antofagasta Norte (+$1.500 envío)</option>
+              <option value="2000">Antofagasta Sur (+$2.000 envío)</option>
+            </select>
+          </div>
+
+          <div class="total-box">
+            <span>TOTAL ESTIMADO</span>
+            <div class="total-price" id="quick-total">$18.000</div>
+          </div>
+
+          <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;" onclick="switchTab('agendar')">
+            <i class="fa-solid fa-calendar-plus"></i> Agendar Retiro con este Cálculo
+          </button>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- TAB 2: PRECIOS -->
+    <div id="precios" class="tab-content">
+      <div class="section-title">
+        <h2>Tarifas y Calculadora Detallada</h2>
+        <p>Precios transparentes sin sorpresas</p>
+      </div>
+
+      <div class="calc-card">
+        <div class="form-group">
+          <label class="form-label">Tipo de Prenda / Servicio</label>
+          <div class="service-options">
+            <div class="option-card selected" onclick="setService('estandar', this)">
+              <h5>Lavado Estándar</h5>
+              <p>$3.000 / kg (Lavado + Secado)</p>
+            </div>
+            <div class="option-card" onclick="setService('delicado', this)">
+              <h5>Delicado + Planchado</h5>
+              <p>$4.500 / kg</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Cantidad de Kilos</label>
+          <div class="counter-control">
+            <button class="counter-btn" onclick="updateKilosDetailed(-1)">-</button>
+            <span class="counter-val" id="detail-kilos">8 kg</span>
+            <button class="counter-btn" onclick="updateKilosDetailed(1)">+</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Tiempo de Entrega</label>
+          <select id="speed-option" onchange="calculateDetailedPrice()">
+            <option value="1">Entrega Normal (48 horas)</option>
+            <option value="1.2">Entrega Express (24 horas) +20%</option>
+          </select>
+        </div>
+
+        <div class="total-box">
+          <span>VALOR ESTIMADO FINAL</span>
+          <div class="total-price" id="detail-total">$24.000</div>
+        </div>
+
+        <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;" onclick="switchTab('agendar')">
+          Ir a Formulario de Agenda
+        </button>
+      </div>
+    </div>
+
+    <!-- TAB 3: ZONAS DE COBERTURA -->
+    <div id="zonas" class="tab-content">
+      <div class="section-title">
+        <h2>Zonas de Reparto y Cobertura</h2>
+        <p>Llegamos a gran parte de la comuna de Antofagasta</p>
+      </div>
+
+      <div class="zones-wrapper">
+        <div>
+          <div class="zone-card">
+            <div>
+              <h4 style="font-size: 1.1rem;">Antofagasta Centro</h4>
+              <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 0.2rem;">Días: Lunes a Sábado</p>
+            </div>
+            <span class="status-badge status-active"><i class="fa-solid fa-circle-check"></i> Disponible</span>
+          </div>
+
+          <div class="zone-card">
+            <div>
+              <h4 style="font-size: 1.1rem;">Antofagasta Norte</h4>
+              <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 0.2rem;">Días: Martes, Jueves y Sábado</p>
+            </div>
+            <span class="status-badge status-active"><i class="fa-solid fa-circle-check"></i> Disponible</span>
+          </div>
+
+          <div class="zone-card">
+            <div>
+              <h4 style="font-size: 1.1rem;">Antofagasta Sur (Jardines del Sur)</h4>
+              <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 0.2rem;">Días: Lunes, Miércoles y Viernes</p>
+            </div>
+            <span class="status-badge status-active"><i class="fa-solid fa-circle-check"></i> Disponible</span>
+          </div>
+        </div>
+
+        <div style="background: var(--card-bg); border-radius: var(--radius); padding: 1.5rem; border: 1px solid var(--border-color); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+          <img src="http://googleusercontent.com/image_collection/image_retrieval/1526766562948727741_0" alt="Lavanderia" style="width: 100%; max-height: 220px; object-fit: cover; border-radius: 12px; margin-bottom: 1rem;">
+          <h3>¿No encuentras tu sector?</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem; margin-bottom: 1rem;">Escríbenos por WhatsApp para coordinar despachos especiales fuera de radio urbano.</p>
+          <a href="https://wa.me/" class="btn btn-wsp"><i class="fa-brands fa-whatsapp"></i> Consultar Sector Especial</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: AGENDAR -->
+    <div id="agendar" class="tab-content">
+      <div class="section-title">
+        <h2>Agenda tu Retiro a Domicilio</h2>
+        <p>Ingresa tus datos para coordinar el paso de nuestro repartidor</p>
+      </div>
+
+      <div class="calc-card" style="max-width: 700px;">
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Nombre Completo</label>
+            <input type="text" placeholder="Ej: Juan Pérez" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label">Teléfono / WhatsApp</label>
+              <input type="tel" placeholder="+56 9 1234 5678" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Correo Electrónico</label>
+              <input type="email" placeholder="correo@ejemplo.com" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Dirección de Retiro</label>
+            <input type="text" placeholder="Calle, Número y Depto/Casa" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label">Comuna / Sector</label>
+              <select required>
+                <option value="centro">Antofagasta Centro</option>
+                <option value="norte">Antofagasta Norte</option>
+                <option value="sur">Antofagasta Sur</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Fecha Preferida de Retiro</label>
+              <input type="date" required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+            <i class="fa-solid fa-paper-plane"></i> Confirmar y Agendar Retiro
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MOBILE BOTTOM NAVIGATION -->
+  <div class="mobile-bottom-nav">
+    <div class="mobile-nav-items">
+      <button class="mobile-tab active" onclick="switchTab('inicio')">
+        <i class="fa-solid fa-house"></i>
+        <span>Inicio</span>
+      </button>
+      <button class="mobile-tab" onclick="switchTab('precios')">
+        <i class="fa-solid fa-calculator"></i>
+        <span>Precios</span>
+      </button>
+      <button class="mobile-tab" onclick="switchTab('zonas')">
+        <i class="fa-solid fa-map-location-dot"></i>
+        <span>Zonas</span>
+      </button>
+      <button class="mobile-tab" onclick="switchTab('agendar')">
+        <i class="fa-solid fa-calendar-check"></i>
+        <span>Agendar</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- FOOTER & REDES SOCIALES -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h3>Ropa Limpia</h3>
+        <p>Servicio profesional de lavandería por kilo a domicilio. Cuidamos cada fibra de tu ropa mientras ahorras tiempo para lo que más importa.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#" onclick="switchTab('inicio')">Inicio</a></li>
+          <li><a href="#" onclick="switchTab('precios')">Tarifario</a></li>
+          <li><a href="#" onclick="switchTab('zonas')">Zonas de Cobertura</a></li>
+          <li><a href="#" onclick="switchTab('agendar')">Agendar Servicio</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contacto Directo</h4>
+        <p style="font-size:0.9rem; color:#94A3B8; margin-bottom:0.5rem;"><i class="fa-solid fa-phone" style="color:#60A5FA;"></i> +56 9 8765 4321</p>
+        <p style="font-size:0.9rem; color:#94A3B8; margin-bottom:0.5rem;"><i class="fa-solid fa-envelope" style="color:#60A5FA;"></i> contacto@ropalimpia.cl</p>
+        <p style="font-size:0.9rem; color:#94A3B8;"><i class="fa-solid fa-clock" style="color:#60A5FA;"></i> Lun a Sáb: 08:30 - 19:30 hrs</p>
+      </div>
+
+      <div class="footer-social">
+        <h4>Síguenos en Redes</h4>
+        <div class="social-icons">
+          <a href="https://facebook.com" target="_blank" class="social-btn" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://instagram.com" target="_blank" class="social-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://tiktok.com" target="_blank" class="social-btn" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://wa.me/" target="_blank" class="social-btn" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <p>&copy; 2026 Lavandería Ropa Limpia. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Variables de estado
+    let currentKilos = 6;
+    let detailKilos = 8;
+    let currentServicePrice = 3000;
+
+    // Navegación entre Pestañas
+    function switchTab(tabId) {
+      // Ocultar todos los contenidos
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+
+      // Quitar clase active de botones desktop y mobile
+      document.querySelectorAll('.nav-btn, .mobile-tab').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      // Mostrar tab seleccionado
+      document.getElementById(tabId).classList.add('active');
+
+      // Activar botones correspondientes
+      const tabsMap = { 'inicio': 0, 'precios': 1, 'zonas': 2, 'agendar': 3 };
+      const idx = tabsMap[tabId];
+      if (idx !== undefined) {
+        document.querySelectorAll('.nav-btn')[idx]?.classList.add('active');
+        document.querySelectorAll('.mobile-tab')[idx]?.classList.add('active');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Calculadora Rápida en Inicio
+    function updateKilos(delta) {
+      currentKilos = Math.max(3, currentKilos + delta);
+      document.getElementById('quick-kilos').innerText = currentKilos + ' kg';
+      calculateQuickPrice();
+    }
+
+    function calculateQuickPrice() {
+      const zoneExtra = parseInt(document.getElementById('quick-zone').value) || 0;
+      const total = (currentKilos * 3000) + zoneExtra;
+      document.getElementById('quick-total').innerText = '$' + total.toLocaleString('es-CL');
+    }
+
+    document.getElementById('quick-zone').addEventListener('change', calculateQuickPrice);
+
+    // Calculadora Detallada en Precios
+    function updateKilosDetailed(delta) {
+      detailKilos = Math.max(3, detailKilos + delta);
+      document.getElementById('detail-kilos').innerText = detailKilos + ' kg';
+      calculateDetailedPrice();
+    }
+
+    function setService(type, element) {
+      document.querySelectorAll('.option-card').forEach(card => card.classList.remove('selected'));
+      element.classList.add('selected');
+      currentServicePrice = type === 'estandar' ? 3000 : 4500;
+      calculateDetailedPrice();
+    }
+
+    function calculateDetailedPrice() {
+      const speedMultiplier = parseFloat(document.getElementById('speed-option').value) || 1;
+      const total = Math.round((detailKilos * currentServicePrice) * speedMultiplier);
+      document.getElementById('detail-total').innerText = '$' + total.toLocaleString('es-CL');
+    }
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      alert('¡Gracias! Tu solicitud de agendamiento ha sido enviada. Te contactaremos por WhatsApp para reconfirmar el retiro.');
+    }
+  </script>
+</body>
+</html>
